@@ -18,8 +18,9 @@
             android:layout_height="56dp"
             android:id="@+id/fab2"
             android:layout_marginLeft="20dp"
-            android:background="@color/colorButton"
-            android:src="@drawable/fab_plus"/>
+            android:background="@drawable/oval_ripple"
+            android:src="@drawable/fab_plus"
+            android:elevation="6dp"/>
 
 
         <FrameLayout
