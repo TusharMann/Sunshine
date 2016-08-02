@@ -1,7 +1,6 @@
 package com.example.tushar.sunshine;
 
 import android.os.Bundle;
-import android.support.design.widget.CollapsingToolbarLayout;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.Snackbar;
 import android.support.v7.app.AppCompatActivity;
@@ -19,8 +18,8 @@ public class MainActivity extends AppCompatActivity {
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
 
-        CollapsingToolbarLayout collapsingToolbarLayout;
-        collapsingToolbarLayout=(CollapsingToolbarLayout)findViewById(R.id.collapsing_toolbar);
+
+        //((CollapsingToolbarLayout)findViewById(R.id.collapsing_toolbar)).setTitle("Coffee");
 
 
         FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);
