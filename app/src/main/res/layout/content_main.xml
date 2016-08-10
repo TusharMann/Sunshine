@@ -23,6 +23,20 @@
             android:src="@drawable/fab_plus"
             android:elevation="6dp"/>
 
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="10dp" />
+
+        <com.facebook.login.widget.LoginButton
+            android:layout_width="match_parent"
+            android:layout_height="500dp"
+            android:id="@+id/login_button_fb"/>
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="10dp" />
+
+
 
         <FrameLayout
             android:layout_width="300dp"
