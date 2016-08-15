@@ -6,6 +6,7 @@ import android.content.pm.PackageManager;
 import android.content.pm.Signature;
 import android.net.Uri;
 import android.os.Bundle;
+import android.os.Environment;
 import android.provider.MediaStore;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.Snackbar;
@@ -57,7 +58,12 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 Intent intent=new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
-                
+                imagefile=new File(Environment.getExternalStoragePublicDirectory(Environment.DIRECTORY_PICTURES),"toster.jpg");
+                Uri temp=Uri.fromFile(imagefile);
+
+                intent.putExtra(MediaStore.EXTRA_OUTPUT,temp);
+                intent.putExtra(MediaStore.EXTRA_VIDEO_QUALITY,1);
+                startActivityForResult(intent,0);
 
 
             }
@@ -137,6 +143,29 @@ public class MainActivity extends AppCompatActivity {
                         .setAction("Action", null).show();
             }
         });
+    }
+
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+        if(requestCode==0){
+            switch (requestCode){
+                case RESULT_OK:
+                    if(imagefile.exists())
+                        Toast.makeText(this,"Saved at"+imagefile.getAbsolutePath(),Toast.LENGTH_LONG).show();
+
+                    else
+                        Toast.makeText(this,"Cannot save the photo",Toast.LENGTH_LONG).show();
+
+                    break;
+
+                case RESULT_CANCELED:
+                    break;
+
+                default:break;
+
+
+            }
+        }
     }
 
     @Override
