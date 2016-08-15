@@ -60,6 +60,7 @@ public class MainActivity extends AppCompatActivity {
                 Intent intent=new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
                 imagefile=new File(Environment.getExternalStoragePublicDirectory(Environment.DIRECTORY_PICTURES),"toster.jpg");
                 Uri temp=Uri.fromFile(imagefile);
+                Log.e("Key",temp.toString());
 
                 intent.putExtra(MediaStore.EXTRA_OUTPUT,temp);
                 intent.putExtra(MediaStore.EXTRA_VIDEO_QUALITY,1);
@@ -151,7 +152,7 @@ public class MainActivity extends AppCompatActivity {
             switch (requestCode){
                 case RESULT_OK:
                     if(imagefile.exists())
-                        Toast.makeText(this,"Saved at"+imagefile.getAbsolutePath(),Toast.LENGTH_LONG).show();
+                        Toast.makeText(this,"Saved at"+data.getData(),Toast.LENGTH_LONG).show();
 
                     else
                         Toast.makeText(this,"Cannot save the photo",Toast.LENGTH_LONG).show();
