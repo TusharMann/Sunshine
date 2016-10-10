@@ -1,13 +1,9 @@
 package com.example.tushar.sunshine;
 
-import android.content.Intent;
 import android.content.pm.PackageInfo;
 import android.content.pm.PackageManager;
 import android.content.pm.Signature;
-import android.net.Uri;
 import android.os.Bundle;
-import android.os.Environment;
-import android.provider.MediaStore;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.Snackbar;
 import android.support.v7.app.AppCompatActivity;
@@ -17,33 +13,16 @@ import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
-import android.widget.ImageButton;
-import android.widget.Toast;
 
-import com.facebook.AccessToken;
-import com.facebook.CallbackManager;
-import com.facebook.FacebookCallback;
-import com.facebook.FacebookException;
+import com.example.tushar.sunshine.Fragments.mainfragment;
 import com.facebook.FacebookSdk;
-import com.facebook.GraphRequest;
-import com.facebook.GraphResponse;
 import com.facebook.appevents.AppEventsLogger;
-import com.facebook.login.LoginResult;
-import com.facebook.login.widget.LoginButton;
-import com.facebook.share.model.ShareLinkContent;
 
-import org.json.JSONObject;
-
-import java.io.File;
 import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
-import java.util.Arrays;
 
 public class MainActivity extends AppCompatActivity {
 
-    CallbackManager callbackManager;
-    ImageButton imgbtn;
-    File imagefile;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -53,22 +32,9 @@ public class MainActivity extends AppCompatActivity {
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
 
-        imgbtn=(ImageButton)findViewById(R.id.fab2);
-        imgbtn.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Intent intent=new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
-                imagefile=new File(Environment.getExternalStoragePublicDirectory(Environment.DIRECTORY_PICTURES),"toster.jpg");
-                Uri temp=Uri.fromFile(imagefile);
-                Log.e("Key",temp.toString());
+        mainfragment fragment=new mainfragment();
+        getSupportFragmentManager().beginTransaction().replace(R.id.mainActivity_framelayout,fragment);
 
-                intent.putExtra(MediaStore.EXTRA_OUTPUT,temp);
-                intent.putExtra(MediaStore.EXTRA_VIDEO_QUALITY,1);
-                startActivityForResult(intent,0);
-
-
-            }
-        });
 
 
         AppEventsLogger.activateApp(this);
@@ -89,48 +55,7 @@ public class MainActivity extends AppCompatActivity {
         catch (NoSuchAlgorithmException e) {
 
         }
-        callbackManager = CallbackManager.Factory.create();
-        final LoginButton loginButton = (LoginButton)findViewById(R.id.login_button_fb);
-        loginButton.setReadPermissions(Arrays.asList(
-                "email", "user_friends"));
-        ShareLinkContent content = new ShareLinkContent.Builder()
-                .setContentUrl(Uri.parse("https://developers.facebook.com"))
-                .build();
-        loginButton.registerCallback(callbackManager, new FacebookCallback<LoginResult>() {
-            @Override
-            public void onSuccess(LoginResult loginResult) {
-                Toast.makeText(MainActivity.this, loginResult.getAccessToken().getToken(), Toast.LENGTH_LONG)
-                        .show();
-                AccessToken accessToken = loginResult.getAccessToken();
-                GraphRequest request = GraphRequest.newMeRequest(
-                        accessToken,
-                        new GraphRequest.GraphJSONObjectCallback() {
-                            @Override
-                            public void onCompleted(
-                                    JSONObject object,
-                                    GraphResponse response) {
-                                String email = object.optString("email");
-                                String uid = object.optString("id");
-                                Toast.makeText(MainActivity.this, email + " " + uid, Toast.LENGTH_LONG).show();
 
-                                // Application code
-                            }
-                        });
-            }
-
-
-            @Override
-            public void onCancel() {
-
-            }
-
-            @Override
-            public void onError(FacebookException error) {
-                Log.e("error", error.toString());
-                Toast.makeText(MainActivity.this,
-                        error.toString(), Toast.LENGTH_LONG).show();
-            }
-        });
 
 
         //((CollapsingToolbarLayout)findViewById(R.id.collapsing_toolbar)).setTitle("Coffee");
@@ -146,28 +71,6 @@ public class MainActivity extends AppCompatActivity {
         });
     }
 
-    @Override
-    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
-        if(requestCode==0){
-            switch (requestCode){
-                case RESULT_OK:
-                    if(imagefile.exists())
-                        Toast.makeText(this,"Saved at"+data.getData(),Toast.LENGTH_LONG).show();
-
-                    else
-                        Toast.makeText(this,"Cannot save the photo",Toast.LENGTH_LONG).show();
-
-                    break;
-
-                case RESULT_CANCELED:
-                    break;
-
-                default:break;
-
-
-            }
-        }
-    }
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {

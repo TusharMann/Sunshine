@@ -33,7 +33,7 @@ public class mainfragment extends Fragment {
         // Inflate the layout for this fragment
         rootView = inflater.inflate(R.layout.fragment_mainfragment, container, false);
         String[] data = {
-        "Monday     6/22 - Sunny  31/17",
+                "Monday     6/22 - Sunny  31/17",
                 "Tuesday    6/23 - Sunny  34/12",
                 "Wednesday  6/24 - Rainy  21/11",
                 "Thursday   6/25 - Cloudy 20/10",
