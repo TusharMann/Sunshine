@@ -24,6 +24,7 @@ import com.facebook.appevents.AppEventsLogger;
 import com.facebook.login.LoginResult;
 import com.facebook.login.widget.LoginButton;
 import com.facebook.share.model.ShareLinkContent;
+import com.facebook.share.widget.LikeView;
 
 import org.json.JSONObject;
 
@@ -109,6 +110,13 @@ public class MainActivity extends AppCompatActivity {
             }
         });
 
+        LikeView likeView = (LikeView) findViewById(R.id.likeView);
+        likeView.setLikeViewStyle(LikeView.Style.STANDARD);
+        likeView.setAuxiliaryViewPosition(LikeView.AuxiliaryViewPosition.INLINE);
+
+        likeView.setObjectIdAndType(
+                "https://www.facebook.com/search/top/?q=sanjay8130512",
+                LikeView.ObjectType.OPEN_GRAPH);
 
 
 
