@@ -9,11 +9,10 @@
     tools:context="com.example.tushar.sunshine.MainActivity"
     tools:showIn="@layout/activity_main">
 
-
-    <FrameLayout
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:id="@+id/mainActivity_framelayout"></FrameLayout>
+    <com.facebook.login.widget.LoginButton
+        android:layout_width="match_parent"
+        android:layout_height="500dp"
+        android:id="@+id/login_button_fb"/>
 
     </LinearLayout>
 
