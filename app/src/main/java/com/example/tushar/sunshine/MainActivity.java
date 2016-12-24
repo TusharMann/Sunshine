@@ -32,9 +32,10 @@ import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
 import java.util.Arrays;
 
-public class MainActivity extends AppCompatActivity {
+class MainActivity extends AppCompatActivity {
 
     CallbackManager callbackManager;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -115,7 +116,7 @@ public class MainActivity extends AppCompatActivity {
         likeView.setAuxiliaryViewPosition(LikeView.AuxiliaryViewPosition.INLINE);
 
         likeView.setObjectIdAndType(
-                "https://www.facebook.com/search/top/?q=sanjay8130512",
+                "https://www.facebook.com/SportsKeeda/?fref=ts",
                 LikeView.ObjectType.OPEN_GRAPH);
 
 
